@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Common helpers for learnings-discipline hook scripts.
+# Common helpers for learn hook scripts.
 # Source this file; do not execute directly.
 
 # Honour the kill switch. If LEARNINGS_DISCIPLINE_HOOKS=off, exit silently with continue:true.

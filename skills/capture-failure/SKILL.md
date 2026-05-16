@@ -1,12 +1,22 @@
 ---
-name: learn-capture-failure
-description: Record a failed approach in LEARNINGS.md so it isn't re-tried later. Use when the user runs `/learn capture-failure`, says something like "that didn't work", "this approach failed", "dead end", "let's note this didn't work", "capture this as a failure", or when the assistant itself notices a non-trivial dead-end was just discovered and wants to record it. Appends a `(tried, failed because, mitigation)` entry to LEARNINGS.md §"Things that did NOT work and why".
-argument-hint: '["one-line summary of what was tried"]'
+name: capture-failure
+description: Record a failed approach in LEARNINGS.md so it isn't re-attempted later. Appends a (tried, failed because, mitigation) entry to the "Things that did NOT work and why" section.
+when_to_use: |
+  Use proactively when the user OR the assistant says any of:
+    "that didn't work", "this approach failed", "we hit a dead end", "let's pivot",
+    "abandoning this", "going to try something different", "stepping back",
+    "different approach needed", "let's note this didn't work",
+    "capture this as a failure", "this is a gotcha", "save this for posterity".
+  Also use proactively when the assistant has just observed a failure pattern
+  worth documenting — a misleading error message, a tool that silently no-ops,
+  a config setting that breaks on macOS but not Linux. Before pivoting to a new
+  approach, capture the failure.
+argument-hint: "["one-line summary of what was tried"]"
 allowed-tools: Read, mcp__learnings__learnings_capture_failure
 disable-model-invocation: false
 ---
 
-You are running the `/learn capture-failure` skill. Your job is to append a well-formed failure entry to `.claude/LEARNINGS.md`.
+You are running the `/learn:capture-failure` skill. Your job is to append a well-formed failure entry to `.claude/LEARNINGS.md`.
 
 ## Steps
 

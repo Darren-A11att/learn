@@ -194,7 +194,7 @@ learnings-discipline/                            # the plugin repo root
 
 ```json
 {
-  "name": "learnings-discipline",
+  "name": "learn",
   "version": "1.0.0",
   "description": "Enforces the LEARNINGS.md consultation discipline: read before acting, cite don't rederive, append on discovery.",
   "author": { "name": "Darren-A11att" },
@@ -439,7 +439,7 @@ Dispatches the auditor agent which produces a report and (with permission) appli
 
 ### Phase 0 — repo scaffold (one evening)
 
-- Create `learnings-discipline` repo
+- Create `learn` repo
 - Write `plugin.json`, README, LICENSE, marketplace.json
 - Stub directory structure per §4
 - Hello-world `session-start.sh` that emits a static `additionalContext`

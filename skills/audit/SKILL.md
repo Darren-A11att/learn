@@ -1,12 +1,19 @@
 ---
-name: learn-audit
-description: Audit `.claude/CLAUDE.md` and `.claude/LEARNINGS.md` for structural rot, missing required language, stale entries, and broken cross-references. Use when the user runs `/learn audit`, asks to "audit the learnings", "check CLAUDE.md", "validate the learnings discipline", "lint the docs", or wants a health-check of the institutional-memory files. Dispatches the `learnings-auditor` subagent and surfaces its report verbatim.
-argument-hint: ""
+name: audit
+description: Audit .claude/CLAUDE.md and .claude/LEARNINGS.md for structural rot, missing rule language (M1/M5/M7), missing privileged sections, stale entries, and broken cross-references. Dispatches the learnings-auditor agent.
+when_to_use: |
+  Use when the user says any of:
+    "audit the learnings", "audit CLAUDE.md", "check the discipline",
+    "validate the institutional memory", "lint the docs", "is LEARNINGS.md healthy",
+    "are we still following the discipline", "review the .claude folder",
+    "health check the docs".
+  Also use proactively when the user has been editing .claude/CLAUDE.md or
+  .claude/LEARNINGS.md by hand — after their changes, an audit catches drift.
 allowed-tools: Agent, mcp__learnings__learnings_audit
 disable-model-invocation: false
 ---
 
-You are running the `/learn audit` skill. Your job is to invoke the auditor agent and relay its findings.
+You are running the `/learn:audit` skill. Your job is to invoke the auditor agent and relay its findings.
 
 ## Steps
 

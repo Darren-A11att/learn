@@ -1,12 +1,21 @@
 ---
-name: learn-capture-win
-description: Record a working approach in LEARNINGS.md so it can be cited and reused. Use when the user runs `/learn capture-win`, says something like "this worked", "got it working", "that fixed it", "capture this win", "let's record this pattern", or when the assistant notices a non-trivial working approach was just discovered and worth preserving. Appends an `(approach, why it worked, when to use)` entry to LEARNINGS.md §"What Worked".
-argument-hint: '["one-line summary of what worked"]'
+name: capture-win
+description: Record a working approach in LEARNINGS.md so it can be cited and reused. Appends an (approach, why it worked, when to use) entry to the "What Worked" section.
+when_to_use: |
+  Use proactively when the user OR the assistant says any of:
+    "this worked", "got it working", "that fixed it", "we're unblocked",
+    "capture this win", "let's record this pattern", "save this recipe",
+    "this is the right answer", "noting this works", "for next time".
+  Also use proactively when the assistant has just produced a working
+  non-trivial recipe (a multi-step fix, a config combination that's
+  non-obvious, a working command after several failed attempts). Capture the
+  win before the conversation moves on.
+argument-hint: "["one-line summary of what worked"]"
 allowed-tools: Read, mcp__learnings__learnings_capture_win
 disable-model-invocation: false
 ---
 
-You are running the `/learn capture-win` skill. Your job is to append a well-formed win entry to `.claude/LEARNINGS.md`.
+You are running the `/learn:capture-win` skill. Your job is to append a well-formed win entry to `.claude/LEARNINGS.md`.
 
 ## Steps
 

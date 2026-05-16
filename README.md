@@ -1,4 +1,4 @@
-# learnings-discipline
+# learn
 
 > A Claude Code plugin that turns *"we kept a CLAUDE.md and a LEARNINGS.md and it worked extraordinarily well"* into something every project gets by default.
 
@@ -19,16 +19,16 @@ This plugin packages that practice into reusable primitives so future projects s
 
 | Surface | Slash command | What it does |
 |---|---|---|
-| Skill | `/learn init [project-type]` | Scaffold `.claude/CLAUDE.md` + `.claude/LEARNINGS.md` from a templated, M1-M9-baked-in starting point |
-| Skill | `/learn brainstorm "<topic>"` | Dispatch N (default 5) parallel perspective agents writing `.claude/thoughts/0K-<slug>.md`, then a synthesizer writing `00-PLAN-<slug>.md` |
-| Skill | `/learn capture-failure` | Append the latest failed attempt to LEARNINGS.md §"Things that did NOT work" with `(tried, failed because, mitigation)` |
-| Skill | `/learn capture-win` | Append the latest working approach with `(approach, why it worked, when to use)` |
-| Skill | `/learn audit` | Dispatch the `learnings-auditor` agent to check structural rot, drift, missing privileged sections, stale entries |
-| Skill | `/learn recall <topic>` | Surface relevant LEARNINGS.md sections inline via MCP `learnings_relevant_sections` |
-| Skill | `/learn retrospective` | Read all artifacts under `.claude/` and synthesize a retrospective |
-| Hook | `SessionStart` | Inject LEARNINGS.md heading list (~500 tokens) at session start; suggest `/learn init` if no CLAUDE.md present |
-| Hook | `PostToolUse:Bash` | Detect win-after-failure pattern (exit 0 following exit ≠ 0), suggest `/learn capture-win` |
-| Hook | `UserPromptSubmit` | Detect ambiguity markers (`ways to`, `approaches`, `brainstorm`, …) and suggest `/learn brainstorm`; detect pivot phrases and suggest `/learn capture-failure` |
+| Skill | `/learn:init [project-type]` | Scaffold `.claude/CLAUDE.md` + `.claude/LEARNINGS.md` from a templated, M1-M9-baked-in starting point |
+| Skill | `/learn:brainstorm "<topic>"` | Dispatch N (default 5) parallel perspective agents writing `.claude/thoughts/0K-<slug>.md`, then a synthesizer writing `00-PLAN-<slug>.md` |
+| Skill | `/learn:capture-failure` | Append the latest failed attempt to LEARNINGS.md §"Things that did NOT work" with `(tried, failed because, mitigation)` |
+| Skill | `/learn:capture-win` | Append the latest working approach with `(approach, why it worked, when to use)` |
+| Skill | `/learn:audit` | Dispatch the `learnings-auditor` agent to check structural rot, drift, missing privileged sections, stale entries |
+| Skill | `/learn:recall <topic>` | Surface relevant LEARNINGS.md sections inline via MCP `learnings_relevant_sections` |
+| Skill | `/learn:retrospective` | Read all artifacts under `.claude/` and synthesize a retrospective |
+| Hook | `SessionStart` | Inject LEARNINGS.md heading list (~500 tokens) at session start; suggest `/learn:init` if no CLAUDE.md present |
+| Hook | `PostToolUse:Bash` | Detect win-after-failure pattern (exit 0 following exit ≠ 0), suggest `/learn:capture-win` |
+| Hook | `UserPromptSubmit` | Detect ambiguity markers (`ways to`, `approaches`, `brainstorm`, …) and suggest `/learn:brainstorm`; detect pivot phrases and suggest `/learn:capture-failure` |
 | MCP tool | `learnings_read` | Return full LEARNINGS.md + heading index |
 | MCP tool | `learnings_relevant_sections` | Keyword + symptom scored search |
 | MCP tool | `learnings_append_section` | Validated append (refuses H3 nesting, > 200-word paragraphs) |
@@ -61,10 +61,10 @@ See `docs/methodology.md` for the full writeup.
 
 ```sh
 # Add the marketplace
-/plugin marketplace add Darren-A11att/learnings-discipline-marketplace
+/plugin marketplace add Darren-A11att/learn-marketplace
 
 # Install
-/plugin install learnings-discipline@learnings-discipline-marketplace
+/plugin install learn@learn-marketplace
 ```
 
 ## Quickstart
@@ -72,10 +72,10 @@ See `docs/methodology.md` for the full writeup.
 In a fresh project:
 
 ```
-/learn init generic
+/learn:init generic
 ```
 
-That writes `.claude/CLAUDE.md` and `.claude/LEARNINGS.md` from the generic template. After that, the hooks and MCP tools take over. Every session start, the LEARNINGS heading list is injected (~500 tokens). Every Bash success after a failure suggests `/learn capture-win`. Every "let's try something else" suggests `/learn capture-failure`.
+That writes `.claude/CLAUDE.md` and `.claude/LEARNINGS.md` from the generic template. After that, the hooks and MCP tools take over. Every session start, the LEARNINGS heading list is injected (~500 tokens). Every Bash success after a failure suggests `/learn:capture-win`. Every "let's try something else" suggests `/learn:capture-failure`.
 
 ## Dogfooded
 
@@ -83,7 +83,7 @@ This plugin is built using its own discipline. See `.claude/CLAUDE.md`, `.claude
 
 ## Status
 
-v0.1.0 — first publishable version. Scope and roadmap in `.claude/thoughts/00-architecture.md` and `/Users/darrenallatt/.claude/plans/let-s-also-do-robust-graham.md`.
+v0.2.0 — plugin renamed `learnings-discipline` → `learn` (and skills lost their redundant `learn-` prefix) so slash commands are now `/learn:init`, `/learn:brainstorm`, `/learn:recall` etc. Every skill grew a `when_to_use` block with natural-language trigger phrases so the model auto-invokes them reliably. Roadmap in `.claude/thoughts/00-architecture.md`.
 
 ## License
 

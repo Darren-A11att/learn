@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// MCP server for the learnings-discipline plugin.
+// MCP server for the learn plugin.
 //
 // Hand-rolled JSON-RPC 2.0 over stdin/stdout with LSP-style framing
 // (Content-Length headers). No external dependencies. Implements just enough

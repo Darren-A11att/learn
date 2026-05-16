@@ -1,12 +1,24 @@
 ---
-name: learn-recall
-description: Look up sections of `.claude/LEARNINGS.md` relevant to a topic or keyword and surface them inline. Use when the user runs `/learn recall`, asks "what do we know about X?", "have we hit this before?", "does LEARNINGS.md say anything about Y?", "search the learnings", or when the assistant wants to manually trigger a consultation mid-turn before answering a technical question. Returns matching section headings, first paragraphs, and line ranges.
+name: recall
+description: Search the project's institutional memory (LEARNINGS.md) for prior knowledge on a topic. Returns matching section headings, first paragraphs, and line ranges so the model can cite them rather than re-deriving.
+when_to_use: |
+  **Use proactively before responding to any non-trivial technical question** to check whether the topic is already documented. The plugin's M5 rule ("cite, don't re-derive") depends on this skill firing on its own.
+  
+  Specifically use when the user asks any of:
+    "what do we know about X", "have we hit this before", "didn't we deal with Y",
+    "search the learnings", "find prior knowledge on Z", "is there a section on W",
+    "look this up in LEARNINGS", "check institutional memory", "any prior art".
+  
+  Also use proactively whenever a user prompt touches a topic that appears in
+  .claude/CLAUDE.md's trigger-keyword list — even if the user didn't explicitly
+  ask to search. Better to look and find nothing than to silently re-derive
+  something the project already knows.
 argument-hint: "<topic or keyword>"
 allowed-tools: mcp__learnings__learnings_relevant_sections, mcp__learnings__learnings_read
 disable-model-invocation: false
 ---
 
-You are running the `/learn recall` skill. Your job is to find LEARNINGS.md sections relevant to a topic and surface them to the user with a recommendation.
+You are running the `/learn:recall` skill. Your job is to find LEARNINGS.md sections relevant to a topic and surface them to the user with a recommendation.
 
 ## Steps
 

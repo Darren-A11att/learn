@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# UserPromptSubmit hook: Triggers B (ambiguity → /learn brainstorm) and C (pivot →
-# /learn capture-failure), plus optional keyword re-injection from CLAUDE.md.
+# UserPromptSubmit hook: Triggers B (ambiguity → /learn:brainstorm) and C (pivot →
+# /learn:capture-failure), plus optional keyword re-injection from CLAUDE.md.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -36,7 +36,7 @@ emit_context() {
 # --- Trigger B: ambiguity markers (strong signal — open-ended exploration) ---
 AMBIG_RE='\b(ways to|approaches|options|tradeoffs|brainstorm|explore|how could we|several ways|different ways)\b'
 if printf '%s' "$PROMPT" | grep -iqE "$AMBIG_RE"; then
-  emit_context "This prompt sounds open-ended. Consider running /learn brainstorm \"<topic>\" to dispatch a multi-perspective agent team into .claude/thoughts/ before settling on an approach."
+  emit_context "This prompt sounds open-ended. Consider running /learn:brainstorm \"<topic>\" to dispatch a multi-perspective agent team into .claude/thoughts/ before settling on an approach."
 fi
 
 # --- Trigger B2: design-decision verbs (softer signal — implies architectural choices) ---
@@ -56,7 +56,7 @@ if printf '%s' "$PROMPT" | grep -iqE "$DESIGN_RE"; then
   fi
   # Only nudge if no recent thoughts doc exists — assume the user already has one if they do.
   if [ "$RECENT_THOUGHTS" = "0" ]; then
-    emit_context "This prompt implies a design decision. If you haven't already, consider running /learn brainstorm \"<topic>\" or creating a .claude/thoughts/0N-<slug>.md design doc BEFORE writing code. The architectural rule from .claude/CLAUDE.md: every design decision goes into thoughts/ before code is written for it."
+    emit_context "This prompt implies a design decision. If you haven't already, consider running /learn:brainstorm \"<topic>\" or creating a .claude/thoughts/0N-<slug>.md design doc BEFORE writing code. The architectural rule from .claude/CLAUDE.md: every design decision goes into thoughts/ before code is written for it."
   fi
 fi
 
@@ -66,7 +66,7 @@ LAST_ASSIST=$(printf '%s' "$STATE" | jq -r '.last_assistant_message // ""')
 PIVOT_RE="\\b(that didn't work|let me try|let's pivot|abandoning|going to try a different|stepping back|different approach)\\b"
 if [ -n "$LAST_ASSIST" ] && [ "$LAST_ASSIST" != "null" ]; then
   if printf '%s' "$LAST_ASSIST" | grep -iqE "$PIVOT_RE"; then
-    emit_context "It looks like the previous step pivoted away from a failing approach. Consider running /learn capture-failure to record what didn't work and why before moving on."
+    emit_context "It looks like the previous step pivoted away from a failing approach. Consider running /learn:capture-failure to record what didn't work and why before moving on."
   fi
 fi
 

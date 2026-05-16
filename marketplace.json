@@ -1,21 +1,21 @@
 {
-  "name": "learnings-discipline-marketplace",
+  "name": "learn-marketplace",
   "owner": {
     "name": "Darren-A11att",
     "email": "darren.allatt@gmail.com"
   },
-  "description": "Single-plugin marketplace hosting learnings-discipline — the CLAUDE.md + LEARNINGS.md documentation discipline packaged as a Claude Code plugin.",
+  "description": "Single-plugin marketplace hosting the `learn` plugin — institutional memory (CLAUDE.md + LEARNINGS.md + thoughts/) for any project.",
   "plugins": [
     {
-      "name": "learnings-discipline",
+      "name": "learn",
       "source": ".",
-      "description": "Auto-detects when to scaffold institutional memory, capture failures and wins, and brainstorm complex tasks. Ships skills, hooks, an MCP server with 8 tools, 3 subagents, and 5 project-type template variants.",
-      "version": "0.1.0",
+      "description": "Institutional memory for any project. /learn:init, /learn:brainstorm, /learn:capture-failure, /learn:capture-win, /learn:audit, /learn:recall, /learn:retrospective. Ships 7 skills, 3 subagents, 4 hooks, an 8-tool MCP server, and 5 project-type templates.",
+      "version": "0.2.0",
       "author": { "name": "Darren-A11att" },
-      "homepage": "https://github.com/Darren-A11att/learnings-discipline",
-      "repository": "https://github.com/Darren-A11att/learnings-discipline",
+      "homepage": "https://github.com/Darren-A11att/learn",
+      "repository": "https://github.com/Darren-A11att/learn",
       "license": "MIT",
-      "keywords": ["documentation", "institutional-memory", "discipline", "methodology", "claude-code"]
+      "keywords": ["documentation", "institutional-memory", "learnings", "methodology", "claude-code"]
     }
   ]
 }

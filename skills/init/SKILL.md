@@ -1,12 +1,20 @@
 ---
-name: learn-init
-description: Scaffold a new project with the LEARNINGS.md consultation discipline. Use when the user runs `/learn init`, asks to initialize/bootstrap/set up the learnings-discipline plugin in a repo, asks to create a starter `.claude/CLAUDE.md` and `.claude/LEARNINGS.md`, or wants to install institutional-memory scaffolding for a project. Accepts an optional project-type (generic, android-mod, web-app, cli-tool, data-pipeline). Refuses to overwrite existing CLAUDE.md or LEARNINGS.md without `--force`.
+name: init
+description: Scaffold institutional memory (.claude/CLAUDE.md + .claude/LEARNINGS.md) for a project. Sets up the consult-before-acting discipline. Accepts an optional project-type and refuses to overwrite without --force.
+when_to_use: |
+  Use proactively when the user says any of:
+    "set up learnings", "initialize learn", "bootstrap the discipline",
+    "start a CLAUDE.md", "create a LEARNINGS.md", "scaffold the .claude folder",
+    "I want institutional memory here", "install the learnings system",
+    "init the project memory", "set up the consult-before-acting rule".
+  Also use when entering a brand-new repo that has no .claude/CLAUDE.md and the
+  user is starting non-trivial work — proactively offer to /learn:init.
 argument-hint: "[project-type=generic|android-mod|web-app|cli-tool|data-pipeline] [--force]"
 allowed-tools: Read, Write, Bash, mcp__learnings__template_get
 disable-model-invocation: false
 ---
 
-You are running the `/learn init` skill. Your job is to scaffold the LEARNINGS.md consultation discipline into the current project.
+You are running the `/learn:init` skill. Your job is to scaffold the LEARNINGS.md consultation discipline into the current project.
 
 ## Steps
 

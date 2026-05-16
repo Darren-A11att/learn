@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # PostToolUse (Bash) hook: Trigger D — detect a successful command after recent failures
-# and suggest /learn capture-win. Throttled to one suggestion per 30 minutes.
+# and suggest /learn:capture-win. Throttled to one suggestion per 30 minutes.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -68,7 +68,7 @@ fi
 printf '%s' "$NEW_STATE" | write_state
 
 if [ "$EMIT_SUGGESTION" = "1" ]; then
-  MSG="💡 That command succeeded after some failures. If this represents a working pattern worth keeping, run /learn capture-win to record it in LEARNINGS.md."
+  MSG="💡 That command succeeded after some failures. If this represents a working pattern worth keeping, run /learn:capture-win to record it in LEARNINGS.md."
   jq -n --arg msg "$MSG" '{
     continue: true,
     hookSpecificOutput: {

@@ -1,4 +1,4 @@
-# LEARNINGS — learnings-discipline plugin
+# LEARNINGS — learn plugin
 
 Technical journal for building the plugin. Future readers (humans + LLM sessions): this is the playbook, the traps, and the reasoning. Read once, save hours.
 
@@ -24,7 +24,7 @@ Every template, hook, MCP tool, and audit check maps to one or more of these. Ci
 
 ## The architecture in one paragraph
 
-The plugin layers four primitive types: **templates** (the scaffold), **skills** (slash commands the user invokes), **hooks** (the trigger-detection surface), and an **MCP server** (the durable data surface). Templates capture the verbatim text mechanics (M1, M2, M5, M7, M8). Skills make explicit operations cheap (`/learn init`, `/learn brainstorm`, `/learn capture-*`). Hooks turn implicit conversational signals into nudges (a Bash success after failures → suggest `/learn capture-win`; an ambiguous user prompt → suggest `/learn brainstorm`). The MCP server is the only stateful surface — every read, write, append, audit, search goes through it so the file format stays consistent and the M9 validator (flat structure, paragraph length) runs on every append. Subagents (perspective, synthesizer, auditor) operate in isolated contexts and use the MCP tools as their data plane.
+The plugin layers four primitive types: **templates** (the scaffold), **skills** (slash commands the user invokes), **hooks** (the trigger-detection surface), and an **MCP server** (the durable data surface). Templates capture the verbatim text mechanics (M1, M2, M5, M7, M8). Skills make explicit operations cheap (`/learn:init`, `/learn:brainstorm`, `/learn capture-*`). Hooks turn implicit conversational signals into nudges (a Bash success after failures → suggest `/learn:capture-win`; an ambiguous user prompt → suggest `/learn:brainstorm`). The MCP server is the only stateful surface — every read, write, append, audit, search goes through it so the file format stays consistent and the M9 validator (flat structure, paragraph length) runs on every append. Subagents (perspective, synthesizer, auditor) operate in isolated contexts and use the MCP tools as their data plane.
 
 ## The dev loop
 
@@ -35,8 +35,8 @@ Every change cycle:
 3. Run `scripts/verify_plugin.sh` (static checks: plugin.json parses, all paths resolve, skill frontmatter valid, MCP tools have schemas, templates contain literal M1/M5/M7 strings).
 4. Install plugin locally: `claude plugin install $(pwd)` from this repo.
 5. In a separate Claude Code session in a temp dir, exercise the changed surface.
-6. If a new pattern surfaced (a hook fired correctly, a template avoided a gotcha) → append to "What worked" via `/learn capture-win`.
-7. If something failed and you pivoted → `/learn capture-failure`.
+6. If a new pattern surfaced (a hook fired correctly, a template avoided a gotcha) → append to "What worked" via `/learn:capture-win`.
+7. If something failed and you pivoted → `/learn:capture-failure`.
 
 This loop is itself a worked example of M7 (living-document obligation): the file you're reading grows as the plugin grows.
 

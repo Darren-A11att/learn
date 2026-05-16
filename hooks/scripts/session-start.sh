@@ -26,7 +26,7 @@ HEADINGS=$(grep -nE '^## ' "$LEARNINGS" || true)
 
 if [ -z "$HEADINGS" ]; then
   # File exists but has no H2 sections; still emit a softer note.
-  MSG="This project has a .claude/LEARNINGS.md but it has no H2 sections yet. Consider running /learn init or /learn capture-win to begin populating institutional memory."
+  MSG="This project has a .claude/LEARNINGS.md but it has no H2 sections yet. Consider running /learn:init or /learn:capture-win to begin populating institutional memory."
   jq -n --arg msg "$MSG" '{
     continue: true,
     hookSpecificOutput: {
@@ -44,7 +44,7 @@ $HEADINGS
 
 Consult LEARNINGS.md before responding to anything that touches these topics. Use the MCP \`learnings_relevant_sections\` tool to find the right section by keyword or symptom. See .claude/CLAUDE.md for the discipline rules."
 else
-  CONTEXT="This project has no .claude/CLAUDE.md. Run /learn init to set up institutional memory and the consult-before-acting discipline.
+  CONTEXT="This project has no .claude/CLAUDE.md. Run /learn:init to set up institutional memory and the consult-before-acting discipline.
 
 A LEARNINGS.md exists with these sections:
 

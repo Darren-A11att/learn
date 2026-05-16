@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# verify_plugin.sh — static checks for the learnings-discipline plugin.
+# verify_plugin.sh — static checks for the learn plugin.
 # Validates: plugin.json parses, all referenced paths exist, every skill has
 # valid frontmatter, every agent has a model declared, every MCP tool exists,
 # every CLAUDE.md template has the M1/M5/M7 anchors, every LEARNINGS.md

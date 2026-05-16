@@ -1,12 +1,19 @@
 ---
-name: learn-retrospective
-description: Run a retrospective across all project artifacts (`.claude/`, `patches/`, root docs) and write a perspective document recommending which mechanics should be promoted to LEARNINGS.md. Use when the user runs `/learn retrospective`, asks for "a retro", "a retrospective", "let's look back at this project", "what did we learn", "summarise the patterns from this work", or at the end of a multi-day session before wrapping up. Writes `.claude/thoughts/0N-retrospective.md` and does NOT modify LEARNINGS.md directly — recommends entries for the user to confirm.
-argument-hint: ""
+name: retrospective
+description: Run a retrospective across all project artifacts (.claude/, patches/, root docs) and write a perspective doc recommending which mechanics should be promoted to LEARNINGS.md. Does NOT modify LEARNINGS.md directly.
+when_to_use: |
+  Use when the user says any of:
+    "retro", "retrospective", "look back at this project", "what did we learn",
+    "summarise the patterns", "synthesise the takeaways", "wrap-up",
+    "end-of-project review", "extract what worked from this session".
+  Also use proactively when a milestone is reached (a release tag, a major
+  phase complete, the end of a long working session) and the user hasn't
+  explicitly asked but the right move is to harvest patterns before moving on.
 allowed-tools: Read, Bash, Grep, Glob, Write, mcp__learnings__thoughts_create, mcp__learnings__learnings_read
 disable-model-invocation: false
 ---
 
-You are running the `/learn retrospective` skill. Your job is to harvest patterns and decisions from a project's artifacts and recommend which belong in LEARNINGS.md.
+You are running the `/learn:retrospective` skill. Your job is to harvest patterns and decisions from a project's artifacts and recommend which belong in LEARNINGS.md.
 
 ## Steps
 
@@ -32,7 +39,7 @@ You are running the `/learn retrospective` skill. Your job is to harvest pattern
    - A **"Recommended for LEARNINGS.md"** section at the end listing concrete proposed entries, each in the same shape as the existing LEARNINGS.md sections (heading + 1–3 paragraphs)
    - For each recommendation, cite the source artifact (file path + line range) that motivated it
 
-6. **Report.** Print the file path of the retrospective and a one-sentence summary of how many recommendations it contains. Explicitly tell the user: *"I have NOT modified LEARNINGS.md. Review the recommendations and run `/learn capture-win` or `/learn capture-failure` for each one you want to promote."*
+6. **Report.** Print the file path of the retrospective and a one-sentence summary of how many recommendations it contains. Explicitly tell the user: *"I have NOT modified LEARNINGS.md. Review the recommendations and run `/learn:capture-win` or `/learn:capture-failure` for each one you want to promote."*
 
 ## Constraints
 

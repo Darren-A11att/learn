@@ -97,7 +97,7 @@ if [ "$RECENT_THOUGHTS" = "0" ] && [ "$THROTTLE_OK" = "1" ]; then
     continue: true,
     hookSpecificOutput: {
       hookEventName: "PreToolUse",
-      systemMessage: ("💡 About to write `" + $path + "` without a design doc in .claude/thoughts/ this session. If this involves architectural decisions, consider /learn brainstorm \"<topic>\" first. This nudge is throttled to once per 30 min; not blocking.")
+      systemMessage: ("💡 About to write `" + $path + "` without a design doc in .claude/thoughts/ this session. If this involves architectural decisions, consider /learn:brainstorm \"<topic>\" first. This nudge is throttled to once per 30 min; not blocking.")
     }
   }'
   exit 0

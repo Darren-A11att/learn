@@ -1,4 +1,4 @@
-# learnings-discipline — Claude operating instructions
+# learn — Claude operating instructions
 
 ## Required first step: read LEARNINGS.md
 
@@ -19,7 +19,7 @@ It is structured by topic. Skim every `##` heading first. Then read the sections
 
 ## Working in this repo
 
-- The plugin is at `/Users/darrenallatt/Development/learnings-discipline/`.
+- The plugin is at `/Users/darrenallatt/Development/learn/`.
 - The reference project is at `/Users/darrenallatt/Development/launcher/` — its `.claude/CLAUDE.md` and `.claude/LEARNINGS.md` are the gold templates. The Android-mod project-type variant lifts from there verbatim.
 - Skills are at `skills/<name>/SKILL.md` with YAML frontmatter.
 - Agents are at `agents/<name>.md` with YAML frontmatter declaring `model`, `description`.
@@ -41,7 +41,7 @@ Answer with cited references to LEARNINGS.md sections. Do not paraphrase from me
 
 ## When updating LEARNINGS.md
 
-If during a session you discover a new failure mode, a new working pattern, or a refinement of an existing pattern — append a new section to LEARNINGS.md and tell the user. The file is the project's institutional memory; keeping it current is part of every task. Use the `/learn capture-failure` or `/learn capture-win` slash command when it applies; otherwise use the MCP `learnings_append_section` tool directly with M9-valid content.
+If during a session you discover a new failure mode, a new working pattern, or a refinement of an existing pattern — append a new section to LEARNINGS.md and tell the user. The file is the project's institutional memory; keeping it current is part of every task. Use the `/learn:capture-failure` or `/learn:capture-win` slash command when it applies; otherwise use the MCP `learnings_append_section` tool directly with M9-valid content.
 
 ## Dogfooding obligations
 

@@ -2,7 +2,7 @@
   "name": "learnings-mcp-server",
   "version": "0.1.0",
   "type": "module",
-  "description": "MCP server for the learnings-discipline plugin",
+  "description": "MCP server for the learn plugin",
   "main": "index.js",
   "private": true,
   "engines": { "node": ">=20" }

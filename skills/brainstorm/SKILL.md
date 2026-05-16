@@ -1,12 +1,22 @@
 ---
-name: learn-brainstorm
-description: Run a parallel multi-perspective brainstorm on a topic, decision, or design question. Use when the user runs `/learn brainstorm`, asks to "brainstorm X", asks for multiple perspectives / multiple angles / a debate on a decision, wants a structured comparison of options (e.g. "should we use Postgres or SQLite?", "monolith vs microservices", "which auth strategy"), or asks to dispatch parallel agents to think through a problem. Generates N perspective files in `.claude/thoughts/` and then a synthesis document.
-argument-hint: '"<topic>" [--agents=5] [--angles=<comma-separated-list>]'
+name: brainstorm
+description: Run a parallel multi-perspective brainstorm on a topic, decision, or design question. N subagents explore different angles in .claude/thoughts/; a synthesizer writes a unified plan.
+when_to_use: |
+  Use proactively when the user says any of:
+    "brainstorm X", "explore the options for Y", "what are the approaches",
+    "give me multiple perspectives on Z", "debate this", "should we use A or B",
+    "monolith vs microservices", "Postgres or SQLite", "which auth strategy",
+    "let's think through this", "different ways to do X", "tradeoffs of P vs Q".
+  Also use when the user describes a task that has clear design decisions
+  (implement / design / architect / refactor / migrate / integrate / add a feature)
+  and no .claude/thoughts/0N-*.md design doc has been written for it yet —
+  proactively offer to brainstorm before writing code.
+argument-hint: ""<topic>" [--agents=5] [--angles=<comma-list>]"
 allowed-tools: Read, Bash, Grep, Glob, mcp__learnings__thoughts_create, mcp__learnings__learnings_read, Agent
 disable-model-invocation: false
 ---
 
-You are running the `/learn brainstorm` skill. Your job is to orchestrate a parallel brainstorm: N perspectives explored in parallel, then synthesised into a plan.
+You are running the `/learn:brainstorm` skill. Your job is to orchestrate a parallel brainstorm: N perspectives explored in parallel, then synthesised into a plan.
 
 ## Steps
 
